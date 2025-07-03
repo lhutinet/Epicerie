@@ -1,0 +1,149 @@
+// index------------------------
+#facade001 {
+    // taille photo:1600 x 910   => /2.9
+
+    width: 550px;
+    height: 314px;
+    margin: 10px;
+    @include formatTel()
+}
+
+// -----Nav-----------------
+
+
+
+// services -----------------------------
+#ficheLivraison {
+    flex-direction: column;
+
+
+    .textContainer {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+}
+
+#partner002 {
+    width: 571px;
+    height: 256px;
+    margin: 10px;
+
+    @include formatTel()
+}
+
+#pain001 {
+    // taille photo:1801 x 1200   => /4
+    width: 450px;
+    height: 300px;
+    margin: 10px;
+
+    @include formatTel()
+}
+
+#gaz001 {
+    // taille photo:1526 x 964  => /3.2
+    width: 477px;
+    height: 300px;
+    margin: 10px;
+
+    @include formatTel()
+}
+
+
+
+
+// produits -----------------------------
+
+
+
+#blancabri01 {
+    // taille photo:1070 x 2015   => /5
+    width: 214px;
+    height: 403px;
+    @include formatTel()
+}
+
+#juFruit01 {
+    // taille photo:1600x780   => /4
+    width: 400px;
+    height: 195px;
+    @include formatTel()
+}
+
+#fraise01 {
+    // taille photo:1200x1599   => /4
+    width: 300px;
+    height: 400px;
+    @include formatTel()
+}
+
+#philippe01 {
+    // taille photo:765 x1200   => /3
+    width: 255px;
+    height: 400px;
+    @include formatTel()
+}
+
+#biere01 {
+    // taille photo:1600 x810   => /3
+    width: 400px;
+    height: 202px;
+    @include formatTel()
+}
+
+#fougerouse01 {
+    // taille photo:1080 x1035   => /3
+    width: 250px;
+    height: 250px;
+    @include formatTel()
+}
+
+#saucisson003 {
+    // taille photo:1080 x810   => /3
+    width: 270px;
+    height: 202px;
+    @include formatTel()
+}
+
+#miel001 {
+    // taille photo:1600x721   => /3
+    width: 400px;
+    height: 202px;
+    @include formatTel()
+}
+
+//----------------coupe----------------
+#fromage001 {
+    // taille photo:1323x965   => /3
+    width: 441px;
+    height: 200px;
+    @include formatTel()
+}
+
+#museau001 {
+    // taille photo  1080x608   => /3
+    width: 360px;
+    height: 200px;
+    @include formatTel()
+}
+
+// assiette------------
+#assiette001 {
+    // taille photo  1576x1409   => /3.94
+    width: 400px;
+    height: 358px;
+    @include formatTel()
+}
+
+// -----------magasin------------
+#magasinpano001 {
+    // taille photo  1576x1409   => /3.94
+    width: 100%;
+    height: auto;
+    // width: 760px;
+    // height: 286px;
+    margin: 10px;
+    @include formatTel()
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <title>navbar</title>
+    <!-- <link rel="stylesheet" href="./style.css" /> -->
+  </head>
+  <body>
+    <div id="logoGauche">
+      <a href="./index.html"
+        ><img
+          id="logoMagasin2"
+          src="./img/magasin-flyer/cadie.jpg"
+          style="height: 20px; width: 20px; left: 15px"
+          alt="logo magasin"
+        />
+      </a>
+    </div>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="./index.html" target="_parent">
+            <img
+              id="logoMagasin"
+              src="./img/magasin-flyer/cadie-ss-fong.png"
+              style="height: 20px; width: 20px"
+              alt="logo magasin"
+          /></a>
+        </li>
+
+        <li class="deroulant">
+          <a href="#" target="_parent">Nos produits</a>
+          <ul class="sous">
+            <li>
+              <a href="./nosProduit.html" target="_parent">Nos produits</a>
+            </li>
+            <li>
+              <a href="./nosProduit.html#locaux" target="_parent"
+                >Produits locaux</a
+              >
+            </li>
+            <li>
+              <a href="./nosProduit.html#terroir" target="_parent"
+                >Produits du terroir</a
+              >
+            </li>
+            <li>
+              <a href="./nosProduit.html#coupe" target="_parent">A la coupe</a>
+            </li>
+            <li>
+              <a href="./nosProduit.html#quotidien" target="_parent"
+                >Nos rayons</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <li class="deroulant">
+          <a href="#" target="_parent">Nos services</a>
+          <ul class="sous">
+            <li>
+              <a href="./services.html" target="_parent">Nos services</a>
+            </li>
+            <li>
+              <a href="./services.html#livraison" target="_parent"
+                >livraison à domicile</a
+              >
+            </li>
+            <li>
+              <a href="./services.html#pain" target="_parent">Dépot de pain</a>
+            </li>
+            <li>
+              <a href="./services.html#gaz" target="_parent">Bouteilles gaz</a>
+            </li>
+          </ul>
+        </li>
+
+        <li><a href="./Contact.html" target="_parent">Contact</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>

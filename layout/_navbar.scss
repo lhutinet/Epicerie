@@ -1,0 +1,224 @@
+nav {
+    min-width: 100%;
+    margin: 0 auto;
+    // position: sticky;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    font-family: "Merriweather", serif;
+    background: $color1;
+    border-bottom: solid 1px $color3;
+    transform: translateX(-50%);
+
+
+
+    #logoGauche {
+        display: none;
+    }
+
+    ul {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        background: transparent;
+        z-index: 100;
+        color: white;
+
+
+        li {
+            position: relative;
+            background: $color2;
+            border-radius: 20px 20px 0 0;
+            margin: 0.5px;
+            transition: background 0.3s, border 0.3s;
+
+            #logoMagasin {
+                width: 20px;
+                height: 20px;
+                padding: 0;
+                margin: -5px 15px;
+                box-shadow: none;
+
+
+            }
+
+
+
+            &:hover {
+                border: 1px solid $color3;
+                background: lighten($color2, 10%);
+            }
+        }
+
+        &::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    }
+
+    a {
+        display: block;
+        text-decoration: none;
+        color: white;
+        border-bottom: 2px solid transparent;
+        padding: 10px 20px;
+        transition: color 0.3s, border-bottom 0.3s;
+
+        &:hover {
+            color: $color3;
+            border-bottom: 2px solid $color3;
+        }
+    }
+
+    >ul li:hover .sous {
+        display: block;
+    }
+
+    .sous {
+        display: none;
+        // box-shadow: 0px 1px 2px #ccc;
+        // background: linear-gradient(to right, rgb(0, 117, 206) 0%, rgb(44, 161, 164) 75%, rgb(0, 117, 206) 100%);
+        position: absolute;
+        width: 100%;
+        z-index: 100;
+
+        li {
+            float: none;
+            width: 100%;
+            text-align: left;
+            border-radius: 20px;
+        }
+
+        a {
+            padding: 10px;
+            border-bottom: none;
+
+            &:hover {
+                background-color: rgba(200, 200, 200, 0.1);
+            }
+        }
+    }
+
+    .deroulant>a::after {
+        content: " ▼";
+        font-size: 12px;
+    }
+
+    @media screen and (max-width: 400px) {
+        font-size: 0.8rem;
+    }
+}
+
+// #navSocial {
+//     position: absolute;
+//     top: 20px;
+//     right: 250px;
+
+//     #social {
+//         padding: 2px;
+//         display: flex;
+//         width: 150px;
+//         right: 25px;
+//         transform: translateX(50%);
+//         z-index: 1;
+
+//         a {
+//             color: black;
+
+//             &:hover {
+//                 color: blueviolet;
+//             }
+//         }
+//     }
+
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+
+    span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: white;
+    }
+}
+
+
+
+
+
+/* Media query pour petits écrans */
+@media (max-width: 600px) {
+
+    #logoGauche {
+        display: flex !important;
+        position: fixed;
+        left: 15px;
+        top: 15px;
+
+        #logoMagasin2 {
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            margin: -5px 15px;
+            box-shadow: none !important;
+
+
+
+        }
+
+    }
+
+
+
+    .hamburger {
+        display: flex;
+        position: fixed;
+        right: 15px;
+        top: 15px;
+        z-index: 10;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 250px;
+        position: absolute;
+        border-radius: 10px;
+        top: 60px;
+        left: 10px;
+        padding: 1rem;
+        background: $color2;
+
+
+        &.active {
+            display: flex;
+        }
+    }
+
+    .sous {
+        display: none;
+        transform: translate(100px, -100px);
+    }
+
+    nav ul li {
+        width: 100%;
+        border-radius: 10px;
+
+    }
+
+    nav a {
+        display: block;
+        padding: 0.5rem;
+        width: 100%;
+        text-align: left;
+    }
+}

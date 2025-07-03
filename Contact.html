@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="./img/magasin-flyer/logo2-2.jpg"
+    />
+    <title>Contact Epicerie Proxi Roussillon 38150</title>
+    <meta
+      name="description"
+      content="Besoin d'informations sur notre épicerie à Roussillon (38) ? Contactez-nous par téléphone, email ou venez nous rendre visite. Nous sommes à votre écoute pour vous conseiller et répondre à vos besoins."
+    />
+    <link rel="stylesheet" href="style.css?v2.04" />
+  </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-KKFVFH6KPC"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-KKFVFH6KPC");
+  </script>
+  <body>
+    <div id="navbar"></div>
+    <script src="./script/navb.js?v2.02"></script>
+
+    <main>
+      <h1>Contact</h1>
+      <h3>N'hésitez pas à nous laisser un message</h3>
+      <div id="message-success" style="display: none; color: green">
+        Message envoyé avec succès !
+      </div>
+      <div id="message-error" style="display: none; color: red">
+        Erreur lors de l'envoi du message.
+      </div>
+
+      <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has("success")) {
+          document.getElementById("message-success").style.display = "block";
+        }
+        if (urlParams.has("error")) {
+          document.getElementById("message-error").style.display = "block";
+        }
+      </script>
+      <p></p>
+      <form id="contact" name="contact" method="POST" action="traitement.php">
+        <div class="containtForm">
+          <label>
+            <input type="text" name="prenom" placeholder="Prénom " required />
+          </label>
+
+          <label>
+            <input type="text" name="nom" placeholder="Nom" />
+          </label>
+
+          <label>
+            <input type="email" name="email" placeholder="Email " required />
+          </label>
+
+          <label>
+            <textarea
+              name="message"
+              id="textareaCont"
+              placeholder="Votre message"
+            ></textarea>
+          </label>
+
+          <button type="submit">Envoyer</button>
+        </div>
+      </form>
+
+      <!-- <div id="adresse">
+        <h2>Proxi</h2>
+        <p>3 grande rue</p>
+        <p>38150 Roussillon</p>
+        <p>tel <a href="tel:0474864064">04 74 86 40 64</a></p>
+      </div> -->
+      <footer id="footer"></footer>
+    </main>
+    <!-- <canvas id="spiroCanvas"></canvas>
+    <script src="./script/animFonf.js"></script> -->
+  </body>
+</html>

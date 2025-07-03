@@ -1,0 +1,184 @@
+main {
+    margin: 50px 20px 20px 20px;
+    // max-width: 1200px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+
+
+    .ficheProduit {
+        display: flex;
+        flex-direction: column;
+
+        margin: 20px;
+
+        .ficheContainer {
+            display: flex;
+            align-items: center;
+            padding: 30px;
+
+            img {
+                width: 300px;
+                height: 200px;
+            }
+
+            .textContainer {
+                width: 60%;
+
+                border: 2px solid $color3;
+                border-bottom: 2px solid $color2;
+                border-left: 2px solid $color2 ;
+                background: rgb(240, 240, 240);
+                clip-path: none;
+                border-radius: 12px 20px 20px 0;
+                box-shadow: $shadow2;
+
+                p {
+                    color: $color2;
+                }
+            }
+
+        }
+
+
+
+
+        .TarifGaz {
+            display: flex;
+
+
+            table.comicGreen {
+
+                border: 2px solid $color2;
+                width: 100%;
+                text-align: center;
+                border-collapse: collapse;
+                margin: 20px;
+
+
+                td,
+                th {
+                    border: 1px solid white;
+                    // padding: 3px 2px;
+
+                    img {
+                        height: 60px;
+                        width: 60px;
+                    }
+                }
+
+                tbody {
+                    td {
+                        font-size: 1rem;
+                        font-weight: bold;
+                        color: #4F7849;
+                        border: 2px solid $color2;
+                    }
+                }
+
+                thead {
+                    background: $color2;
+
+                    th {
+                        font-size: 1rem;
+                        color: #FFFFFF;
+                        text-align: center;
+                    }
+                }
+
+                tfoot {
+                    td {
+                        font-size: 1.1rem;
+                    }
+                }
+
+
+
+
+                // fin fiche produit
+
+
+            }
+
+
+        }
+
+    }
+
+
+
+
+
+
+    //  media screen Main---------------
+    @media screen and (max-width: 600px) {
+        width: 100%;
+
+
+        * {
+            font-size: 0.5rem;
+            padding: 0;
+            margin: 0;
+        }
+
+        h1 {
+            width: 95%;
+        }
+
+        .ficheProduit {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+
+
+            img {
+                width: 95%;
+                height: auto;
+            }
+
+            .ficheContainer {
+
+                flex-direction: column;
+
+                width: 100%;
+                padding: 0;
+
+
+
+                .textContainer {
+
+
+                    width: 100%;
+                    padding: 0;
+                    margin: 10px 0;
+
+
+
+                    p {
+
+                        width: 100%;
+                        padding: 10px;
+                        margin: 0;
+
+                    }
+                }
+            }
+
+
+        }
+
+
+
+    }
+
+
+
+
+
+    #contribution {
+        text-align: center;
+    }
+}

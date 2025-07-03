@@ -1,0 +1,136 @@
+$color1: rgb(200, 200, 200); // gris(200,200,200)
+$color1-06: rgba(155, 155, 155, 0.6); // gris 
+
+$color2: #660e40; // violet
+$color2-06: rgba(102, 14, 64, 0.6); // violet
+
+$color3: #a2b61e; //vert
+
+$shadow1: 21px 16px 45px 5px rgba(0, 0, 0, 0.52);
+$shadow2: 5px 5px 15px 5px rgba(0, 0, 0, 0.17);
+
+body {
+    width: 100% !important;
+}
+
+
+@mixin arrive-from-haut($duration: 1s, $delay: 0s, $distance: 150px) {
+    animation: arrive-from-haut $duration $delay forwards;
+
+    @keyframes arrive-from-haut {
+        0% {
+            transform: translateY(-$distance);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+@mixin arrive-from-bas($duration: 2s, $delay: 0s, $distance: 50px) {
+    animation: arrive-from-bas $duration $delay forwards;
+
+    @keyframes arrive-from-bas {
+        0% {
+            transform: translateY($distance);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+@mixin arrive-from-opacit($duration: 2s, $delay: 0s, $distance: 100%) {
+    animation: arrive-from-opacit $duration $delay forwards;
+
+    @keyframes arrive-from-opacit {
+        0% {
+            // transform: translateX($distance);
+            opacity: 0;
+        }
+
+        100% {
+            // transform: translateX(0);
+            opacity: 1;
+        }
+    }
+}
+
+.animated {
+    opacity: 0;
+}
+
+.visible {
+    opacity: 1;
+}
+
+// Appliquer les animations avec tes mixins
+.from-haut {
+    @include arrive-from-haut(1s, 0s, 150px);
+}
+
+.from-bas {
+    @include arrive-from-bas(2s, 0s, 150px);
+}
+
+.from-opacity {
+    @include arrive-from-opacit(2s, 0s);
+}
+
+
+
+@mixin formatTel {
+    @media screen and (max-width: 600px) {
+        width: 95%;
+        height: auto;
+    }
+
+}
+
+// $textshadow1: 21px 16px 5px rgba(28, 110, 164, 0.52);
+@font-face {
+    font-family: 'AkayaKanadaka';
+    src: url('./font/AkayaKanadaka-Regular.ttf') format('woff2'), ;
+    font-weight: normal;
+    font-style: normal;
+    // --------------------P----------------
+}
+
+@font-face {
+    font-family: 'Merienda';
+    src: url('./font//Merienda-Black.ttf') format('woff2'), ;
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'PermanentMarker';
+    src: url('./font/PermanentMarker-Regular.ttf') format('woff2'), ;
+    font-weight: normal;
+    font-style: normal;
+    // -------------------H2--------------
+}
+
+
+
+@font-face {
+    font-family: 'CabinSketch-regular';
+    src: url('./font/CabinSketch-Regular.ttf') format('woff2'), ;
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DynaPuff-regular';
+    src: url('./font/DynaPuff-Regular.ttf') format('woff2'), ;
+    font-weight: normal;
+    font-style: normal;
+    // ----------h1----------------
+}

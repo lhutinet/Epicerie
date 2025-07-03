@@ -1,0 +1,120 @@
+.presentationAnimeContainer {
+    position: relative;
+    width: 560px;
+    height: 350px;
+
+    // background: gray;
+    box-shadow: $shadow1;
+
+    .presentationAnimer {
+        position: absolute;
+
+        width: 500px;
+        height: 350px;
+        transition: 1s;
+        border-radius: 20px;
+        display: grid;
+        grid-template-columns: 30px 470px;
+
+        .textContainer {
+            width: 30px;
+            height: 350px;
+            border-radius: 20px 0 0 20px;
+
+            p {
+                transform: rotate(270deg) translate(-150px, 0px);
+                margin: 10px;
+
+                &:hover {
+                    color: $color3;
+                    // border: 1px solid $color3;
+                    cursor: pointer;
+                }
+
+
+            }
+
+        }
+
+        .photoContainer {
+            width: 500px;
+            height: 350px;
+            border-radius: 0 20px 20px 0;
+            // transform: translate(30px, -350px);
+        }
+
+        a {
+
+            width: 500px;
+            height: 350px;
+
+        }
+
+    }
+
+
+    #anim1 {
+        left: 0;
+        z-index: 10;
+
+        .textContainer {
+            background: rgba(102, 14, 64, );
+            border: 1px solid $color3 ;
+        }
+
+        #animImg1 {
+            background: url(./img/produit/saucisson.jpg)center/cover;
+        }
+    }
+
+
+    #anim2 {
+        left: 30px;
+        z-index: 20;
+
+        .textContainer {
+            background: rgba(102, 14, 64, );
+            border: 1px solid $color3 ;
+            ;
+        }
+
+        #animImg2 {
+            background: url(./img/produit/miel.jpg)center/cover;
+        }
+
+    }
+
+    #anim3 {
+        .textContainer {
+            background: rgba(102, 14, 64, );
+            border: 1px solid $color3 ;
+            ;
+        }
+
+        left: 60px;
+        z-index: 30;
+
+        #animImg3 {
+            background: url(./img/magasin-flyer/facade.jpg)center/cover;
+        }
+    }
+
+
+    @media screen and (max-width: 600px) {
+        .presentationAnimeContainer {
+            grid-area: anim;
+            transform: rotate(90deg);
+            height: 500px;
+            padding: 0;
+
+            .photoContainer {
+                transform: rotate(-90deg);
+            }
+
+
+
+        }
+
+
+    }
+}

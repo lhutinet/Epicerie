@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Copier le texte</title>
+  </head>
+  <style></style>
+  <body>
+    <textarea id="texte1" rows="4" cols="50">
+        Ceci est le texte de la première zone.
+    </textarea>
+    <br />
+    <button onclick="copierTexte('texte1')">Copier le texte 1</button>
+    <br /><br />
+    <textarea id="texte2" rows="4" cols="50">
+        Ceci est le texte de la deuxième zone.
+    </textarea>
+    <br />
+    <button onclick="copierTexte('texte2')">Copier le texte 2</button>
+    <br /><br />
+    <textarea id="texte3" rows="4" cols="50">
+        Ceci est le texte de la troisième zone.
+    </textarea>
+    <br />
+    <button onclick="copierTexte('texte3')">Copier le texte 3</button>
+
+    <script>
+      function copierTexte(id) {
+        var texte = document.getElementById(id);
+        texte.select();
+        texte.setSelectionRange(0, 99999); // Pour les mobiles
+
+        navigator.clipboard
+          .writeText(texte.value)
+          .then(() => {
+            alert("Texte copié !");
+          })
+          .catch((err) => {
+            console.error("Erreur lors de la copie du texte : ", err);
+          });
+      }
+    </script>
+  </body>
+</html>
