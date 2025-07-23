@@ -351,8 +351,7 @@ body .textContainer {
   margin: 50px auto 20px auto;
   padding: 10px;
   background-color: #660e40;
-  -webkit-clip-path: polygon(3% 0, 100% 0%, 97% 100%, 0 100%);
-          clip-path: polygon(3% 0, 100% 0%, 97% 100%, 0 100%);
+  clip-path: polygon(3% 0, 100% 0%, 97% 100%, 0 100%);
   border-radius: 5px;
   border-bottom: solid 1px #a2b61e;
 }
@@ -394,8 +393,7 @@ body .containerPresentation #aujourdhui {
   background-color: #660e40;
   width: 150px;
   height: 350px;
-  -webkit-clip-path: polygon(0 0, 0 100%, 8% 100%, 8% 80%, 92% 80%, 92% 100%, 100% 100%, 100% 0, 0 0);
-          clip-path: polygon(0 0, 0 100%, 8% 100%, 8% 80%, 92% 80%, 92% 100%, 100% 100%, 100% 0, 0 0);
+  clip-path: polygon(0 0, 0 100%, 8% 100%, 8% 80%, 92% 80%, 92% 100%, 100% 100%, 100% 0, 0 0);
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -764,7 +762,7 @@ nav ul li #logoMagasin {
 }
 nav ul li:hover {
   border: 1px solid #a2b61e;
-  background: #93145c;
+  background: rgb(146.8448275862, 20.1551724138, 92.1379310345);
 }
 nav ul::after {
   content: "";
@@ -938,8 +936,7 @@ main .ficheProduit .ficheContainer .textContainer {
   border-bottom: 2px solid #660e40;
   border-left: 2px solid #660e40;
   background: rgb(240, 240, 240);
-  -webkit-clip-path: none;
-          clip-path: none;
+  clip-path: none;
   border-radius: 12px 20px 20px 0;
   -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.17);
           box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.17);
