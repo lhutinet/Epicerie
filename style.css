@@ -375,6 +375,33 @@ body #presentationIndex p a:hover,
 body .textContainer p a:hover {
   color: violet;
 }
+body #fermeture {
+  position: relative;
+  background-color: #660e40;
+  width: 50%;
+  height: 150px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 2px black, 21px 16px 45px 5px rgba(0, 0, 0, 0.52);
+          box-shadow: 0 0 2px black, 21px 16px 45px 5px rgba(0, 0, 0, 0.52);
+  border: 2px solid #a2b61e;
+}
+body #fermeture p {
+  margin: 20px auto;
+  font-family: "AkayaKanadaka";
+  text-align: center;
+}
+body #fermeture .horaireVert {
+  color: #a2b61e;
+}
+body #fermeture .horaireBlanc {
+  color: white;
+  font-size: 1.2 rem;
+}
+@media screen and (max-width: 600px) {
+  body #fermeture {
+    width: 90%;
+  }
+}
 body .containerPresentation {
   display: -webkit-box;
   display: -ms-flexbox;
