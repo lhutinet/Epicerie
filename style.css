@@ -455,7 +455,7 @@ body .containerPresentation #aujourdhui #ardoise .vagueArdoise {
   padding: 0;
   margin: 0;
 }
-body .containerPresentation #horaire {
+body .containerPresentation .horaire {
   position: relative;
   background-color: #660e40;
   width: 150px;
@@ -464,24 +464,24 @@ body .containerPresentation #horaire {
   -webkit-box-shadow: 21px 16px 45px 5px rgba(0, 0, 0, 0.52);
           box-shadow: 21px 16px 45px 5px rgba(0, 0, 0, 0.52);
 }
-body .containerPresentation #horaire p {
+body .containerPresentation .horaire p {
   margin: 20px auto;
   font-family: "AkayaKanadaka";
   text-align: center;
 }
-body .containerPresentation #horaire .horaireVert {
+body .containerPresentation .horaire .horaireVert {
   color: #a2b61e;
 }
-body .containerPresentation #horaire .horaireBlanc {
+body .containerPresentation .horaire .horaireBlanc {
   color: white;
   font-size: 1rem;
 }
-body .containerPresentation #horaire .horDimanche {
+body .containerPresentation .horaire .horDimanche {
   background: #a2b61e;
-  margin: 40px 5px 0 5px;
+  margin: 0.2rem 0.1rem 0 0.1rem;
   border-radius: 10px 10px 10px 0;
 }
-body .containerPresentation #horaire #cercleHoraire {
+body .containerPresentation #cercleHoraire {
   position: absolute;
   width: 40px;
   height: 40px;

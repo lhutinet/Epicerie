@@ -141,7 +141,7 @@
           </div> -->
 				</div>
 
-				<div id="horaire">
+				<div id="horaireNormal" class="horaire">
 					<!-- horaire normaux ------------------ -->
 					<p class="horaireVert">HORAIRES</p>
 					<p class="horaireBlanc">Du lundi au samedi</p>
@@ -150,21 +150,51 @@
 					<div class="horDimanche">
 						<p class="horaireBlanc">Dimanche <br />8h00 12h00</p>
 					</div>
-					<!-- horaire vacances ------------------ -->
-					<!-- <p class="horaireVert">HORAIRES</p>
-					<p class="horaireVert">du 12/09/2025 au 28/09/2025</p>
+
+					<div id="cercleHoraire"></div>
+				</div>
+				<!-- ----------fin horaire normaux-------------- -->
+				<!-- horaire vacance ------------------ -->
+				<div id="horaireVacances" class="horaire">
+					<p class="horaireVert">HORAIRES</p>
+					<p class="horaireVert">du 17/10/2025 au 02/11/2025</p>
 					<p class="horaireBlanc">Du lundi au samedi</p>
 					<p class="horaireVert">8H30 12H15</p>
-					<p class="horaireVert">15H30 19H15</p>
+					<p class="horaireVert">15H15 19H30</p>
 					<div class="horDimanche">
 						<p class="horaireBlanc">Dimanche <br />8h30 12h00</p>
-					</div> -->
+					</div>
+
 					<div id="cercleHoraire"></div>
 				</div>
 				<!-- ----------fin horaire vavance-------------- -->
 			</div>
 			<footer id="footer"></footer>
 		</main>
+
+		<script>
+			// Dates de vacances
+			const debutVacances = new Date(2025, 9, 17); // 17 octobre 2025 (mois 9 car 0 = janvier)
+			const finVacances = new Date(2025, 10, 2, 23, 59, 59); // 2 novembre 2025 inclus
+
+			// Date du jour (sans l'heure, pour comparer proprement)
+			const aujourdHui = new Date();
+			aujourdHui.setHours(0, 0, 0, 0);
+
+			// Vérifie si la date actuelle est dans la période
+			const enVacances =
+				aujourdHui >= debutVacances && aujourdHui <= finVacances;
+
+			// Sélectionne les blocs horaires (à adapter selon ton HTML)
+			const horaireNormal = document.getElementById("horaireNormal");
+			const horaireVacances = document.getElementById("horaireVacances");
+
+			// Affiche le bon bloc
+			if (horaireNormal && horaireVacances) {
+				horaireNormal.style.display = enVacances ? "none" : "block";
+				horaireVacances.style.display = enVacances ? "block" : "none";
+			}
+		</script>
 		<script src="./script/horloge.js?v2.02"></script>
 	</body>
 

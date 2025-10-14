@@ -326,7 +326,7 @@ body {
       }
     }
 
-    #horaire {
+    .horaire {
       // @include arrive-from-left(1s, 0s, 50%);
       position: relative;
       background-color: #660e40;
@@ -352,25 +352,25 @@ body {
 
       .horDimanche {
         background: $color3;
-        margin: 40px 5px 0 5px;
+        margin: 0.2rem 0.1rem 0 0.1rem;
         border-radius: 10px 10px 10px 0;
 
       }
 
-      #cercleHoraire {
-        position: absolute;
-        width: 40px;
-        height: 40px;
-        border-radius: 50px;
-        background: $color3;
-        top: -20px;
-        right: 10px;
-        color: white;
-
-      }
 
     }
 
+    #cercleHoraire {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50px;
+      background: $color3;
+      top: -20px;
+      right: 10px;
+      color: white;
+
+    }
 
 
 
