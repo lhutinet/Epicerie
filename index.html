@@ -150,9 +150,18 @@
 					<div class="horDimanche">
 						<p class="horaireBlanc">Dimanche <br />8h30 12h00</p>
 					</div>
-
 					<div id="cercleHoraire"></div>
 				</div>
+
+				<div id="horaireNormal" class="horaire">
+					<p class="horaireVert">ATTENTION</p>
+					<p class="horaireBlanc">le 24 et 31</p>
+					<p class="horaireVert">8H30 12H30</p>
+					<p class="horaireVert">15H30 17H30</p>
+					<p class="horaireBlanc">le 25 et 01/01</p>
+					<p class="horaireVert">FERME</p>
+				</div>
+
 				<!-- ----------fin horaire normaux-------------- -->
 				<!-- horaire vacance ------------------ -->
 				<div id="horaireVacances" class="horaire">
@@ -174,7 +183,7 @@
 
 		<script>
 			// Dates de vacances
-			const debutVacances = new Date(2025, 9, 17); // 17 octobre 2025 (mois 9 car 0 = janvier)
+			const debutVacances = new Date(2025, 12, 24); // 17 octobre 2025 (mois 9 car 0 = janvier)
 			const finVacances = new Date(2025, 10, 2, 23, 59, 59); // 2 novembre 2025 inclus
 
 			// Date du jour (sans l'heure, pour comparer proprement)
