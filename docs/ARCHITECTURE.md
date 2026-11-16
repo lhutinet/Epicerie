@@ -29,6 +29,7 @@ Epicerie/
 ├── style.css                  CSS compilé et servi aux pages
 ├── style.css.map              source map compilée
 ├── script/                    scripts navigateur sans bundler
+├── server/site-settings-api/ API OVH et administration des horaires
 ├── img/                       images éditoriales et commerciales
 ├── font/                      polices locales
 ├── affichageCaisse/           prototype d'affichage déporté
@@ -54,6 +55,7 @@ Chaque page active contient des conteneurs `#navbar` et `#footer`. `script/navb.
 Les autres scripts ont des responsabilités isolées :
 
 - `script/horloge.js` dessine et actualise l'horloge de l'accueil ;
+- `script/site-announcement.js` lit l'annonce active sur l'API OVH et l'ajoute aux horaires normaux, qui restent toujours visibles, y compris lors d'une fermeture ou d'horaires exceptionnels ;
 - `script/anim001.js` utilise `IntersectionObserver` pour révéler certains contenus ;
 - `script/index.js`, `script/ouverture.js` et `script/animFonf.js` existent mais ne sont pas chargés par les pages publiques inspectées, ou seulement dans des blocs commentés ;
 - aucun état applicatif persistant ni appel d'API métier actif n'a été trouvé.
@@ -61,6 +63,14 @@ Les autres scripts ont des responsabilités isolées :
 ### Styles
 
 `style.scss` importe les partiels de `layout/` : variables et polices, réglages globaux, tailles d'images, navigation, contenu principal, pied de page et contact. La sortie publiée est `style.css`, avec `style.css.map`. Les pages utilisent parfois un suffixe de requête (`?v2.04`, par exemple) pour invalider le cache.
+
+### Service des horaires sur OVH
+
+`server/site-settings-api/` contient un service Node.js indépendant déployé sur le VPS OVH. Il publie `GET /announcement` et sert sa propre interface mobile sous `/admin/`. Sa base PostgreSQL distincte conserve l'annonce, les modèles réutilisables, l'empreinte du mot de passe, l'empreinte du code de récupération et les sessions de 60 jours. Un modèle est repris comme brouillon non publié afin de contrôler ses dates avant publication.
+
+Le mot de passe est dérivé avec `scrypt` et un sel aléatoire. Les sessions utilisent un jeton aléatoire dont seule l'empreinte est stockée. Les cookies sont limités à HTTPS, `SameSite=Strict`, et le cookie de session est `HttpOnly`. Les écritures exigent aussi un jeton CSRF lié à la session. Un changement ou une récupération de mot de passe révoque les autres sessions.
+
+Le sous-domaine proposé est `horaires.digitalh.fr`. Il reste configurable avec `PUBLIC_URL`; les origines autorisées pour la lecture publique sont configurées par `PUBLIC_ORIGINS`.
 
 ### Traitement PHP
 
@@ -86,6 +96,7 @@ Services externes référencés :
 - `digitalh.fr` pour le lien du créateur ;
 - `epicerie-roussillon.netlify.app` pour le prototype d'affichage caisse ;
 - le service de messagerie configuré côté hébergeur PHP via `mail()`.
+- le service d'horaires OVH proposé sur `horaires.digitalh.fr`.
 
 Ces intégrations sont toutes effectuées côté navigateur, sauf l'envoi de courriel. Leur disponibilité et leurs règles de confidentialité ne sont pas contrôlées par ce dépôt.
 
@@ -93,7 +104,7 @@ Ces intégrations sont toutes effectuées côté navigateur, sauf l'envoi de cou
 
 Le dépôt Git pointe vers `origin` sur GitHub et suit `origin/master`. Cela décrit le stockage du code, pas le mécanisme de mise en production.
 
-Aucun workflow `.github`, Dockerfile, manifeste Netlify, script de publication ou configuration d'hébergeur n'a été trouvé. Le mode de déploiement du site principal est donc **inconnu**. La présence de PHP et de références de courriel du domaine suggère un hébergement HTTP/PHP classique, mais cette hypothèse n'est pas suffisamment documentée pour être traitée comme un fait.
+Aucun workflow `.github` ni configuration d'hébergement du site principal n'a été trouvé. Son mode de déploiement reste donc **inconnu**. Le service des horaires possède en revanche son Dockerfile, son schéma, son script de déploiement OVH et un exemple Nginx. Ces fichiers préparent le déploiement mais ne prouvent pas qu'il a été effectué.
 
 Pour un déploiement complet, l'hébergement doit au minimum :
 

@@ -25,11 +25,13 @@ Le code existant et les informations commerciales publiées dans les pages reste
 - `nav.html`, `footer.html` : fragments communs chargés par JavaScript.
 - `script/navb.js` : injection des fragments et comportement du menu mobile/desktop.
 - `script/horloge.js`, `script/anim001.js` : horloge décorative et animations actives.
+- `script/site-announcement.js` : lecture tolérante aux pannes de l'annonce publique OVH.
 - `traitement.php` : réception du formulaire et envoi par `mail()`.
 - `style.scss`, `layout/*.scss` : sources des styles.
 - `style.css`, `style.css.map` : sorties compilées suivies par Git.
 - `img/`, `font/` : ressources locales publiées avec le site.
 - `affichageCaisse/` : prototype distinct d'affichage déporté, actuellement incomplet.
+- `server/site-settings-api/` : API OVH, interface mobile, schéma PostgreSQL et déploiement des horaires exceptionnels.
 - `CDC.txt` : besoins et contenus historiques, non contractuels lorsqu'ils divergent du code.
 - `docs/ARCHITECTURE.md` : carte technique du dépôt.
 - `docs/ETAT_PROJET.md` : état connu, limites et travaux restants.
@@ -56,6 +58,7 @@ git diff --check
 
 # Syntaxe JavaScript
 Get-ChildItem .\script -Filter *.js | ForEach-Object { node --check $_.FullName }
+node --test .\docs\tests\site-announcement.test.js .\server\site-settings-api\test\*.test.js
 
 # Syntaxe PHP : utiliser le PATH, sinon la version Wamp la plus récente trouvée
 $php = (Get-Command php.exe -ErrorAction SilentlyContinue).Source
@@ -83,6 +86,7 @@ Vérification manuelle minimale dans un navigateur :
 ## Limites de sécurité
 
 - Ne jamais ajouter de secret, mot de passe, jeton, donnée client ou courriel reçu au dépôt.
+- Les fichiers `.env` et `.admin-token` du service OVH restent exclusivement sur le serveur ; ne jamais les copier dans Prix ou dans le JavaScript public.
 - Ne pas exécuter `test_mail.php` ni soumettre le formulaire réel sans autorisation : ces actions peuvent envoyer un courriel externe.
 - Ne pas appeler `purge_cache.php` sur un environnement hébergé sans connaître précisément son effet.
 - `info.php` et `Contact.php` exposent actuellement `phpinfo()` ; ne pas étendre cette exposition et consulter `docs/ETAT_PROJET.md` avant tout déploiement.

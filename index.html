@@ -157,62 +157,24 @@
 					</div>
 					<div id="cercleHoraire"></div>
 				</div>
-				<!-- -------------------HORAIRE JOUR FERIE ------------------------------ -->
-				<!-- <div id="horaireNormal" class="horaire">
-					<p class="horaireVert">ATTENTION</p>
-					<p class="horaireBlanc">lundi 25 mai</p>
-					<p class="horaireVert">8H30 12H30</p> -->
-				<!-- <p class="horaireVert">15H30 17H30</p> -->
-				<!-- <p class="horaireBlanc">le 25 et 01/01</p>
-					<p class="horaireVert">FERME</p> -->
-				<!-- </div> -->
-
-				<!-- -------------------HORAIRE JOUR FERIEM -------------------------------->
-
-				<!-- ----------fin horaire normaux-------------- -->
-				<!-- horaire vacance ------------------ -->
-				<div id="horaireVacances" class="horaire">
-					<p class="horaireVert">HORAIRES</p>
-					<p class="horaireVert">du 17/10/2025 au 02/11/2025</p>
-					<p class="horaireBlanc">Du lundi au samedi</p>
-					<p class="horaireVert">8H30 12H15</p>
-					<p class="horaireVert">15H15 19H30</p>
-					<div class="horDimanche">
-						<p class="horaireBlanc">Dimanche <br />8h30 12h00</p>
-					</div>
-
-					<div id="cercleHoraire"></div>
+				<div
+					id="siteAnnouncement"
+					class="horaire site-announcement"
+					role="status"
+					aria-live="polite"
+					hidden
+				>
+					<p id="siteAnnouncementTitle" class="horaireVert"></p>
+					<p id="siteAnnouncementMessage" class="horaireBlanc"></p>
+					<p id="siteAnnouncementPeriod" class="horaireBlanc site-announcement-period"></p>
+					<div id="siteAnnouncementSlots"></div>
 				</div>
-				<!-- ----------fin horaire vavance-------------- -->
-				9
 			</div>
 			<footer id="footer"></footer>
 		</main>
 
-		<script>
-			// Dates de vacances
-			const debutVacances = new Date(2025, 12, 24); // 17 octobre 2025 (mois 9 car 0 = janvier)
-			const finVacances = new Date(2025, 10, 2, 23, 59, 59); // 2 novembre 2025 inclus
-
-			// Date du jour (sans l'heure, pour comparer proprement)
-			const aujourdHui = new Date();
-			aujourdHui.setHours(0, 0, 0, 0);
-
-			// Vérifie si la date actuelle est dans la période
-			const enVacances =
-				aujourdHui >= debutVacances && aujourdHui <= finVacances;
-
-			// Sélectionne les blocs horaires (à adapter selon ton HTML)
-			const horaireNormal = document.getElementById("horaireNormal");
-			const horaireVacances = document.getElementById("horaireVacances");
-
-			// Affiche le bon bloc
-			if (horaireNormal && horaireVacances) {
-				horaireNormal.style.display = enVacances ? "none" : "block";
-				horaireVacances.style.display = enVacances ? "block" : "none";
-			}
-		</script>
 		<script src="./script/horloge.js?v2.02"></script>
+		<script src="./script/site-announcement.js?v1.02"></script>
 	</body>
 
 	<!-- <canvas id="spiroCanvas"></canvas>

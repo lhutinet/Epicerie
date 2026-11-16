@@ -2,9 +2,9 @@
 
 ## Portée du constat
 
-État établi le 16 novembre 2026 par inspection ciblée du code et de Git. Aucun test en navigateur contre la production ni envoi de formulaire n'a été effectué. « Fonctionne » signifie ici que le chemin d'exécution est présent et cohérent à la lecture ; cela ne confirme ni l'état de l'hébergement ni celui des services tiers.
+État établi le 16 novembre 2026 par inspection ciblée du code et de Git, puis complété par l'implémentation locale de la gestion des horaires. Aucun test en navigateur contre la production ni envoi de formulaire n'a été effectué. « Fonctionne » signifie ici que le chemin d'exécution est présent et contrôlé localement ; cela ne confirme ni l'état de l'hébergement ni celui des services tiers.
 
-Le dépôt était sur `master`, aligné sur `origin/master`, avec une modification locale préexistante non commitée dans `index.html`. Cette modification appartient à l'utilisateur et ne doit pas être écrasée.
+Le dépôt était sur `master`, aligné sur `origin/master`, au début de l'implémentation des horaires distants.
 
 ## Ce qui fonctionne actuellement dans le code
 
@@ -13,6 +13,9 @@ Le dépôt était sur `master`, aligné sur `origin/master`, avec une modificati
 - Les pages utilisent le CSS compilé `style.css`, avec des règles responsive dans les sources SCSS.
 - La page produits active ses animations à l'apparition via `IntersectionObserver`.
 - L'accueil dessine une horloge locale en canvas.
+- L'accueil peut afficher une information, une fermeture ou des horaires exceptionnels reçus de l'API OVH sans masquer les horaires normaux.
+- Le service dédié fournit une interface mobile, un mot de passe distinct, des sessions révocables de 60 jours et une récupération par code unique. Les tests locaux de validation, de mot de passe et d'expiration passent.
+- L'administration peut mémoriser, reprendre et supprimer des modèles d'information, de fermeture ou d'horaires ; la sécurité du compte est repliée par défaut pour alléger l'écran mobile.
 - Le formulaire de `Contact.html` poste les champs attendus vers `traitement.php`, qui tente un envoi par `mail()` puis redirige vers un message de succès ou d'erreur.
 - Les images et polices nécessaires sont conservées localement ; Font Awesome, la carte et la mesure d'audience sont externes.
 
@@ -34,7 +37,8 @@ Cette liste décrit la couverture fonctionnelle visible, pas une validation mét
 - Compléter ou retirer `Actualites.html` et `indispensables.html`, qui contiennent actuellement peu de contenu ou des placeholders.
 - Décider du devenir de `affichageCaisse/` : prototype à terminer, à isoler ou à supprimer dans une tâche dédiée.
 - Clarifier le statut de `Contact.php`, `info.php`, `purge_cache.php`, `test.html`, `test_mail.php` et des scripts non chargés.
-- Centraliser ou au minimum documenter la procédure de mise à jour des horaires exceptionnels, actuellement codés directement dans `index.html`.
+- Maintenir le service `server/site-settings-api/` désormais déployé sur OVH avec DNS, HTTPS et compte administrateur actifs.
+- Vérifier en production le CORS depuis le ou les domaines réels du site Épicerie.
 - Confirmer si les pages Actualités et Indispensables doivent être accessibles depuis la navigation principale.
 
 ## Problèmes connus
@@ -42,13 +46,11 @@ Cette liste décrit la couverture fonctionnelle visible, pas une validation mét
 ### Bloquants ou visibles
 
 - `affichageCaisse/affichageDeporte/index.html` contient des marqueurs de conflit Git (`<<<<<<<`, `=======`, `>>>>>>>`) déjà suivis dans `HEAD`. Son CSS est invalide tant que le conflit n'est pas résolu.
-- La modification locale préexistante de `index.html` contient un commentaire HTML de fermeture mal formé et le caractère visible `9`. Elle ne fait pas partie de la présente documentation et doit être examinée avec son auteur avant correction.
-- La période spéciale de l'accueil est incohérente : `new Date(2025, 12, 24)` représente janvier 2026, alors que le commentaire parle d'octobre 2025, et la date de fin est en novembre 2025. La condition ne peut donc pas devenir vraie telle qu'elle est écrite.
 - Les liens de l'accueil visent `services.html#ancreLivraison`, `#ancrePain` et `#ancreGaz`, tandis que la page déclare `#livraison`, `#pain` et `#gaz`.
 
 ### Qualité et robustesse
 
-- Plusieurs identifiants HTML sont dupliqués : notamment `horaireNormal`, `cercleHoraire` et `BanderoleFb` dans l'accueil, `---` dans `indispensables.html`, ainsi que certains identifiants d'images dans `nosProduit.html`. Les sélections JavaScript et les ancres peuvent viser le mauvais élément.
+- Plusieurs identifiants HTML sont encore dupliqués : notamment `BanderoleFb` dans l'accueil, `---` dans `indispensables.html`, ainsi que certains identifiants d'images dans `nosProduit.html`.
 - Le script d'invalidation du cache dans `index.html` cherche l'élément `#css`, mais la balise `<link>` n'a pas cet identifiant.
 - Le lien téléphonique de `services.html` utilise `+0474864064`, format international probablement incorrect ; la valeur métier doit être confirmée avant correction.
 - Il n'existe ni `.gitignore`, ni `.gitattributes`, ni README, ni manifeste de dépendances, ni pipeline CI dans le dépôt inspecté.
@@ -66,7 +68,8 @@ Cette liste décrit la couverture fonctionnelle visible, pas une validation mét
 
 ## Limitations actuelles
 
-- Le contenu et les horaires sont codés en dur : une mise à jour exige une modification et un redéploiement.
+- Les horaires normaux restent codés en dur ; seules les informations et périodes exceptionnelles sont administrables à distance.
+- Le service OVH, le DNS et HTTPS sont déployés ; la publication du JavaScript du site reste nécessaire pour livrer les évolutions d'affichage sur le domaine public.
 - L'architecture de fragments chargés avec `fetch()` exige un serveur HTTP ; elle ne fonctionne pas de façon fiable par simple double-clic sur les fichiers.
 - Le site n'a pas de couche de données, d'administration, de traduction ni de gestion centralisée du contenu.
 - La réussite du contact ne peut pas être garantie hors de l'environnement PHP configuré.

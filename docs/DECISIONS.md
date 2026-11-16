@@ -33,7 +33,7 @@ Le dépôt ne contenait pas d'historique de décisions formel lors du constat du
 ## D-004 — Contenu métier et ressources conservés dans le dépôt
 
 - **Statut :** en vigueur.
-- **Choix :** textes, horaires, tarifs, coordonnées, images et polices sont référencés directement par les pages.
+- **Choix :** textes, horaires normaux, tarifs, coordonnées, images et polices sont référencés directement par les pages. Les annonces et horaires exceptionnels proviennent désormais du service OVH dédié.
 - **Raison documentée :** inconnue.
 - **Conséquence :** le dépôt est la source du contenu publié ; les changements métier nécessitent une validation explicite. Il n'existe pas de CMS ou de base de données à synchroniser dans les fichiers inspectés.
 - **Alternative :** l'introduction d'un CMS ou d'une source distante n'a pas été retenue dans l'architecture actuelle et ne doit pas être faite comme simple refactorisation.
@@ -69,6 +69,21 @@ Le dépôt ne contenait pas d'historique de décisions formel lors du constat du
 - **Raison documentée :** inconnue.
 - **Conséquence :** ne pas considérer ce dossier comme une fonctionnalité de production validée ; il contient des marqueurs de conflit et aucun flux caisse réel.
 - **Alternative à réévaluer avant reprise :** servir la page localement au lieu de l'URL Netlify. Aucun choix final n'est documenté.
+
+## D-009 — Administration distante des annonces et horaires exceptionnels
+
+- **Statut :** déployée sur OVH.
+- **Choix :** un service indépendant dans `server/site-settings-api/` sert l'interface mobile et l'API publique. Prix ouvre cette interface par un lien externe ; il ne conserve ni mot de passe ni jeton OVH.
+- **Raison :** permettre une modification depuis un téléphone sans exposer les données comptables de Prix, sans commit Git et sans redéploiement du site.
+- **Sécurité :** base distincte, mot de passe `scrypt`, sessions de 60 jours stockées sous forme d'empreinte, cookies sécurisés, CSRF, limitation des tentatives et code de récupération à usage unique.
+- **Résilience :** le site masque l'annonce distante et garde les horaires normaux lorsque l'API est indisponible.
+- **Alternative écartée :** exposer toute l'application Prix sur Internet ou placer un secret d'administration dans le JavaScript public.
+
+### Les annonces réutilisables sont des modèles explicites
+
+- **Statut :** en vigueur.
+- **Choix :** une fiche peut être enregistrée sous un nom, reprise comme brouillon non publié puis supprimée. Les dates restent visibles pour être contrôlées avant une nouvelle publication.
+- **Raison :** réutiliser les fermetures et horaires récurrents sans écraser automatiquement l'annonce active ni publier d'anciennes dates par erreur.
 
 ## Pistes présentes mais actuellement désactivées
 

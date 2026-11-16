@@ -1,0 +1,17 @@
+services:
+  api:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3002
+    ports:
+      - "127.0.0.1:3002:3002"
+    networks:
+      - umami
+
+networks:
+  umami:
+    external: true
+    name: umami_default

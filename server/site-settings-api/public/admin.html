@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Gestion du site Épicerie</title>
+    <link rel="stylesheet" href="/admin/admin.css" />
+    <script src="/admin/admin.js" defer></script>
+  </head>
+  <body>
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Épicerie Proxi Roussillon</p>
+        <h1>Gestion du site</h1>
+      </div>
+      <button id="logoutButton" class="secondary" type="button" hidden>Déconnexion</button>
+    </header>
+
+    <main>
+      <p id="globalStatus" class="status" role="status" aria-live="polite"></p>
+
+      <section id="setupPanel" class="card auth-card" hidden>
+        <h2>Première installation</h2>
+        <p>Choisissez votre mot de passe. Le code d’installation ne fonctionnera qu’une fois.</p>
+        <form id="setupForm">
+          <label>
+            Code d’installation
+            <input id="setupCode" type="text" autocomplete="one-time-code" required />
+          </label>
+          <label>
+            Mot de passe
+            <input id="setupPassword" type="password" autocomplete="new-password" minlength="12" required />
+          </label>
+          <label>
+            Confirmer le mot de passe
+            <input id="setupPasswordConfirm" type="password" autocomplete="new-password" minlength="12" required />
+          </label>
+          <button type="submit">Créer l’accès administrateur</button>
+        </form>
+      </section>
+
+      <section id="loginPanel" class="card auth-card">
+        <h2>Connexion</h2>
+        <p>La connexion reste active sur cet appareil pendant 60 jours maximum.</p>
+        <form id="loginForm">
+          <label>
+            Mot de passe
+            <input id="loginPassword" type="password" autocomplete="current-password" minlength="12" required />
+          </label>
+          <button type="submit">Se connecter</button>
+        </form>
+        <button id="showRecoveryButton" class="link-button" type="button">Mot de passe oublié</button>
+      </section>
+
+      <section id="recoveryPanel" class="card auth-card" hidden>
+        <h2>Réinitialiser le mot de passe</h2>
+        <form id="recoveryForm">
+          <label>
+            Code de récupération
+            <input id="recoveryCode" type="text" autocomplete="one-time-code" required />
+          </label>
+          <label>
+            Nouveau mot de passe
+            <input id="recoveryPassword" type="password" autocomplete="new-password" minlength="12" required />
+          </label>
+          <label>
+            Confirmer le mot de passe
+            <input id="recoveryPasswordConfirm" type="password" autocomplete="new-password" minlength="12" required />
+          </label>
+          <button type="submit">Réinitialiser</button>
+          <button id="cancelRecoveryButton" class="secondary" type="button">Annuler</button>
+        </form>
+      </section>
+
+      <div id="adminPanel" hidden>
+        <section class="card">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Affichage public</p>
+              <h2>Annonce et horaires exceptionnels</h2>
+            </div>
+            <label class="switch-label">
+              <input id="announcementEnabled" type="checkbox" />
+              Publier
+            </label>
+          </div>
+
+          <form id="announcementForm">
+            <div class="form-grid">
+              <label>
+                Type
+                <select id="announcementType">
+                  <option value="information">Information</option>
+                  <option value="holiday">Jour férié</option>
+                  <option value="special_hours">Horaires exceptionnels</option>
+                  <option value="closed">Fermeture</option>
+                </select>
+              </label>
+              <label>
+                Titre
+                <input id="announcementTitle" type="text" maxlength="80" required />
+              </label>
+              <label class="wide">
+                Message
+                <textarea id="announcementMessage" maxlength="160" rows="3"></textarea>
+              </label>
+              <label>
+                Afficher à partir du
+                <input id="announcementStart" type="datetime-local" />
+              </label>
+              <label>
+                Masquer après le
+                <input id="announcementEnd" type="datetime-local" />
+              </label>
+            </div>
+
+            <fieldset id="slotsFieldset">
+              <legend>Horaires affichés</legend>
+              <div class="slot-grid">
+                <div class="slot-row">
+                  <span>Matin</span>
+                  <input id="morningFrom" type="time" aria-label="Début du matin" />
+                  <span>à</span>
+                  <input id="morningTo" type="time" aria-label="Fin du matin" />
+                  <label class="slot-toggle">
+                    <input id="morningEnabled" type="checkbox" checked />
+                    Afficher
+                  </label>
+                </div>
+                <div class="slot-row">
+                  <span>Après-midi</span>
+                  <input id="afternoonFrom" type="time" aria-label="Début de l’après-midi" />
+                  <span>à</span>
+                  <input id="afternoonTo" type="time" aria-label="Fin de l’après-midi" />
+                  <label class="slot-toggle">
+                    <input id="afternoonEnabled" type="checkbox" checked />
+                    Afficher
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="preview" id="announcementPreview" aria-live="polite"></div>
+            <div class="actions">
+              <button type="submit">Publier les modifications</button>
+              <button id="removeAnnouncementButton" class="danger" type="button">Retirer l’annonce</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="card">
+          <h2>Modèles enregistrés</h2>
+          <p class="compact-help">Enregistrez la fiche actuelle pour la reprendre plus tard comme base.</p>
+          <form id="presetForm" class="preset-form">
+            <input id="presetName" type="text" maxlength="80" placeholder="Ex. Fermeture inventaire" aria-label="Nom du modèle" required />
+            <button type="submit">Mémoriser la fiche</button>
+          </form>
+          <div id="presetsList" class="presets-list"></div>
+        </section>
+
+        <section class="card security-card">
+          <details>
+            <summary>Sécurité du compte</summary>
+            <div class="security-content">
+              <details>
+                <summary>Changer le mot de passe</summary>
+                <form id="passwordForm" class="details-form">
+                  <label>
+                    Mot de passe actuel
+                    <input id="currentPassword" type="password" autocomplete="current-password" required />
+                  </label>
+                  <label>
+                    Nouveau mot de passe
+                    <input id="newPassword" type="password" autocomplete="new-password" minlength="12" required />
+                  </label>
+                  <label>
+                    Confirmer le nouveau mot de passe
+                    <input id="newPasswordConfirm" type="password" autocomplete="new-password" minlength="12" required />
+                  </label>
+                  <button type="submit">Changer le mot de passe</button>
+                </form>
+              </details>
+
+              <h3>Appareils connectés</h3>
+              <div id="sessionsList" class="sessions-list"></div>
+            </div>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <dialog id="recoveryCodeDialog">
+      <h2>Nouveau code de récupération</h2>
+      <p>Conservez ce code dans un endroit sûr. Il ne sera plus affiché.</p>
+      <output id="newRecoveryCode"></output>
+      <form method="dialog"><button>J’ai enregistré le code</button></form>
+    </dialog>
+  </body>
+</html>
