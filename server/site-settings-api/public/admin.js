@@ -7,7 +7,8 @@ const elements = Object.fromEntries(
     'recoveryPanel', 'recoveryForm', 'recoveryCode', 'recoveryPassword',
     'recoveryPasswordConfirm', 'cancelRecoveryButton', 'adminPanel', 'logoutButton',
     'announcementForm', 'announcementEnabled', 'announcementType', 'announcementTitle',
-    'announcementMessage', 'announcementStart', 'announcementEnd', 'slotsFieldset',
+    'announcementMessage', 'announcementStartEnabled', 'announcementStart',
+    'announcementEndEnabled', 'announcementEnd', 'slotsFieldset',
     'morningFrom', 'morningTo', 'morningEnabled', 'afternoonFrom', 'afternoonTo',
     'afternoonEnabled', 'announcementPreview',
     'removeAnnouncementButton', 'presetForm', 'presetName', 'presetsList',
@@ -90,8 +91,12 @@ function formAnnouncement() {
     type: elements.announcementType.value,
     title: elements.announcementTitle.value,
     message: elements.announcementMessage.value,
-    startAt: isoDateTime(elements.announcementStart.value),
-    endAt: isoDateTime(elements.announcementEnd.value),
+    startAt: elements.announcementStartEnabled.checked
+      ? isoDateTime(elements.announcementStart.value)
+      : null,
+    endAt: elements.announcementEndEnabled.checked
+      ? isoDateTime(elements.announcementEnd.value)
+      : null,
     closed: elements.announcementType.value === 'closed',
     slots: [
       slot(elements.morningFrom.value, elements.morningTo.value, elements.morningEnabled.checked),
@@ -115,7 +120,9 @@ function fillAnnouncement(announcement) {
   elements.announcementType.value = value.type || 'information';
   elements.announcementTitle.value = value.title || '';
   elements.announcementMessage.value = value.message || '';
+  elements.announcementStartEnabled.checked = Boolean(value.startAt);
   elements.announcementStart.value = localDateTime(value.startAt);
+  elements.announcementEndEnabled.checked = Boolean(value.endAt);
   elements.announcementEnd.value = localDateTime(value.endAt);
   elements.morningFrom.value = value.slots?.[0]?.from || '';
   elements.morningTo.value = value.slots?.[0]?.to || '';
@@ -127,6 +134,8 @@ function fillAnnouncement(announcement) {
 }
 
 function updatePreview() {
+  elements.announcementStart.disabled = !elements.announcementStartEnabled.checked;
+  elements.announcementEnd.disabled = !elements.announcementEndEnabled.checked;
   const value = formAnnouncement();
   elements.slotsFieldset.hidden = value.type === 'closed';
   const slots = value.type === 'closed'

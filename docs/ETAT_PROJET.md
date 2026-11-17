@@ -16,6 +16,7 @@ Le dépôt était sur `master`, aligné sur `origin/master`, au début de l'impl
 - L'accueil peut afficher une information, une fermeture ou des horaires exceptionnels reçus de l'API OVH sans masquer les horaires normaux.
 - Le service dédié fournit une interface mobile, un mot de passe distinct, des sessions révocables de 60 jours et une récupération par code unique. Les tests locaux de validation, de mot de passe et d'expiration passent.
 - L'administration peut mémoriser, reprendre et supprimer des modèles d'information, de fermeture ou d'horaires ; la sécurité du compte est repliée par défaut pour alléger l'écran mobile.
+- Le début et la fin d'une annonce sont optionnels : sans début programmé elle est valable immédiatement, sans fin programmée elle reste active jusqu'à nouvel ordre.
 - Le formulaire de `Contact.html` poste les champs attendus vers `traitement.php`, qui tente un envoi par `mail()` puis redirige vers un message de succès ou d'erreur.
 - Les images et polices nécessaires sont conservées localement ; Font Awesome, la carte et la mesure d'audience sont externes.
 

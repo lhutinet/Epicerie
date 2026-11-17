@@ -105,14 +105,22 @@
                 Message
                 <textarea id="announcementMessage" maxlength="160" rows="3"></textarea>
               </label>
-              <label>
-                Afficher à partir du
-                <input id="announcementStart" type="datetime-local" />
-              </label>
-              <label>
-                Masquer après le
-                <input id="announcementEnd" type="datetime-local" />
-              </label>
+              <div class="date-control">
+                <label class="date-toggle" for="announcementStartEnabled">
+                  <input id="announcementStartEnabled" type="checkbox" />
+                  Programmer le début
+                </label>
+                <input id="announcementStart" type="datetime-local" aria-label="Afficher à partir du" disabled />
+                <small>Décoché : valable immédiatement</small>
+              </div>
+              <div class="date-control">
+                <label class="date-toggle" for="announcementEndEnabled">
+                  <input id="announcementEndEnabled" type="checkbox" />
+                  Programmer la fin
+                </label>
+                <input id="announcementEnd" type="datetime-local" aria-label="Masquer après le" disabled />
+                <small>Décoché : valable jusqu’à nouvel ordre</small>
+              </div>
             </div>
 
             <fieldset id="slotsFieldset">

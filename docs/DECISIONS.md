@@ -84,6 +84,7 @@ Le dépôt ne contenait pas d'historique de décisions formel lors du constat du
 - **Statut :** en vigueur.
 - **Choix :** une fiche peut être enregistrée sous un nom, reprise comme brouillon non publié puis supprimée. Les dates restent visibles pour être contrôlées avant une nouvelle publication.
 - **Raison :** réutiliser les fermetures et horaires récurrents sans écraser automatiquement l'annonce active ni publier d'anciennes dates par erreur.
+- **Validité :** le début et la fin sont indépendamment optionnels ; une date décochée signifie respectivement « immédiatement » ou « jusqu'à nouvel ordre ».
 
 ## Pistes présentes mais actuellement désactivées
 

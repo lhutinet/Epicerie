@@ -82,6 +82,11 @@ input:focus, select:focus, textarea:focus { outline: 3px solid rgb(162 182 30 / 
 
 .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .wide { grid-column: 1 / -1; }
+.date-control { display: grid; gap: 0.35rem; }
+.date-control small { color: #68705f; }
+.date-toggle { display: flex; grid-template-columns: none; align-items: center; gap: 0.45rem; }
+.date-toggle input { width: 1.2rem; min-height: 1.2rem; }
+.date-control input:disabled { color: #7a8178; background: #eceee9; }
 
 fieldset { margin: 0; border: 1px solid #d8d5cc; border-radius: 10px; }
 .slot-grid { display: grid; gap: 0.65rem; }
